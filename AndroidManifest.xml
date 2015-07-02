@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.nexlink.remoteviewer"
+    android:versionCode="20150629"
+    android:versionName="20150629" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="22" />
+    
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service 
+            android:name="com.nexlink.remoteviewer.CaptureService"
+            android:label="Capture Service">
+        </service>
+        <activity android:name="com.nexlink.remoteviewer.LaunchActivity"
+            android:label="@string/title_activity_boot"
+            android:theme="@android:style/Theme.NoDisplay">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.nexlink.remoteviewer.ScreenCapAuthActivity"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.NoDisplay">
+        </activity>
+        
+        <receiver
+    android:name=".BootReceiver"
+    android:label="RemoteViewerBootReceiver">
+    <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+    </intent-filter>
+</receiver>
+    </application>
+</manifest>

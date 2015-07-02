@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Screencast</title>
+    <script>
+    var source = "frontcam";
+    function setSource(radio){
+    	if(radio.checked){
+    		source = radio.value;
+    	}
+    }
+    
+document.addEventListener("DOMContentLoaded", function(){
+var loadfunc = function(e){
+	e.target.setAttribute("src", "?source=" + source + "&time=" + new Date().getTime());
+	};
+var img = document.getElementsByTagName("img")[0];
+img.addEventListener("load", loadfunc, false);
+img.addEventListener("error", loadfunc, false);
+img.setAttribute("src", "/?source=" + source + "&time=" + new Date().getTime());
+}, false);</script>
+  </head>
+  <body>
+    <form>
+        <input type="radio" name="group" value="off" onchange="setSource(this);">Off</input>
+        <input type="radio" name="group" value="screen" onchange="setSource(this);">Screen</input>
+        <input type="radio" name="group" value="frontcam" onchange="setSource(this);">Front Camera</input>
+        <input type="radio" name="group" value="backcam" onchange="setSource(this);">Back Camera</input>
+    </form>
+    <img/>
+  </body>
+</html>
